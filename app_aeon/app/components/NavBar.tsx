@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function NavBar() {
   return (
-    <nav className="w-full h-16 border-b border-main shadow-lg shadow-slate-500 flex flex-row justify-between items-center px-8 fixed z-50 bg-gradient-to-br from-white">
+    <nav className="w-full h-16 bg-white shadow-md shadow-slate-300 flex flex-row justify-between items-center px-8 fixed z-50">
       <div className="p-3 cursor-pointer hover:bg-gray-100 rounded-xl">
         <div className="w-5 text-main">
           <FontAwesomeIcon icon={faBars} />
