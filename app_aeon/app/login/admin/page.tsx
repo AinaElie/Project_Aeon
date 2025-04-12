@@ -23,7 +23,7 @@ export default function login() {
         </div>
         <button className="border-2 text-xl border-main bg-main w-3/6 mt-5 py-2 rounded-2xl text-white hover:text-main hover:bg-transparent transition-all">Sign in</button>
       </form>
-      <Link href={"/dashboard"} className="text-blue-950 mt-10">Home</Link>
+      <Link href={"/dashboard"} className="text-blue-950 mt-10">Dashboard</Link>
     </div>
   );
 }
