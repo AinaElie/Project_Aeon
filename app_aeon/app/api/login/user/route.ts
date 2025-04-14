@@ -18,8 +18,7 @@ export async function POST(request: NextRequest) {
 
         if (user && user.user_password === password) {
             return NextResponse.json({
-                token: process.env.TOKEN!,
-                redirect: "/transaction",
+                // token: process.env.TOKEN!,
                 message: "Authentication successful"
             }, {status: 200});
         } 
