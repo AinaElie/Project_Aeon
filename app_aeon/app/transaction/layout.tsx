@@ -1,5 +1,5 @@
-import MenuUser from "../components/MenuUser";
-import NavBar from "../components/NavBar";
+import MenuUser from "../components/layout/MenuUser";
+import NavBar from "../components/layout/NavBar";
 
 export default function RootLayout({
   children,
