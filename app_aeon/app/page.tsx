@@ -1,6 +1,12 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
+import Loading from "./loading";
 
 export default function Home() {
+  const [loading, setLoading] = useState(false);
+
   return (
     <>
       <div className="h-screen flex justify-around items-center">
@@ -12,12 +18,17 @@ export default function Home() {
             aut numquam doloribus.
           </p>
           <div className="py-4">
-            <Link
-              href={"/login/admin"}
-              className="bg-main transition-all text-white font-light text-sm px-4 py-2 border border-main rounded-md hover:bg-transparent hover:text-main"
-            >
-              Discovery
-            </Link>
+            {loading ? (
+              <Loading />
+            ) : (
+              <Link
+                onClick={() => setLoading(true)}
+                href={"/login/admin"}
+                className="bg-main transition-all text-white font-light text-sm px-4 py-2 border border-main rounded-md hover:bg-transparent hover:text-main"
+              >
+                Discovery
+              </Link>
+            )}
           </div>
         </div>
         <div className="w-2/5 shadow-md shadow-main px-8 py-4 rounded-lg hover:scale-105 transition-all">
@@ -28,12 +39,17 @@ export default function Home() {
             aut numquam doloribus.
           </p>
           <div className="py-4">
-            <Link
-              href={"/login/user"}
-              className="bg-main transition-all text-white font-light text-sm px-4 py-2 border border-main rounded-md hover:bg-transparent hover:text-main"
-            >
-              Discovery
-            </Link>
+            {loading ? (
+              <Loading />
+            ) : (
+              <Link
+                onClick={() => setLoading(true)}
+                href={"/login/user"}
+                className="bg-main transition-all text-white font-light text-sm px-4 py-2 border border-main rounded-md hover:bg-transparent hover:text-main"
+              >
+                Discovery
+              </Link>
+            )}
           </div>
         </div>
       </div>
