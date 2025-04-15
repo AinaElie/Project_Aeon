@@ -40,7 +40,7 @@ export default function LoginUser() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="transition-all flex flex-col items-center w-1/3 py-8 rounded-xl shadow-lg hover:scale-110 hover:shadow-2xl hover:shadow-main shadow-main"
+      className="transition-all flex flex-col items-center w-1/3 py-8 rounded-xl shadow-sm hover:shadow-2xl hover:shadow-main shadow-main"
     >
       <div>
         <div className="text-center py-4">
@@ -68,10 +68,13 @@ export default function LoginUser() {
           />
         </div>
       </div>
-      <button className="border-2 text-xl border-main bg-main w-3/6 mt-5 py-2 rounded-2xl text-white hover:text-main hover:bg-transparent transition-all">
-        Sign in
-      </button>
-      {loading ? <Loading /> : ""}
+      {loading ? (
+        <Loading />
+      ) : (
+        <button className="border-2 font-light border-main bg-main w-3/6 mt-5 py-2 rounded-2xl text-white hover:text-main hover:bg-transparent transition-all">
+          Sign in
+        </button>
+      )}
       {error ? <Error /> : ""}
     </form>
   );
