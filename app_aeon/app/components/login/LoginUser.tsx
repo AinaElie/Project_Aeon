@@ -1,11 +1,13 @@
 import { useState } from "react";
 import Loading from "./loading";
 import { useRouter } from "next/navigation";
+import Error from "./error";
 
 export default function LoginUser() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -22,12 +24,16 @@ export default function LoginUser() {
       });
 
       if (request.ok) {
+        const data = await request.json();
+        localStorage.setItem("id_user", data.id_user);
         router.push("/transaction");
         setLoading(false);
-      } 
+      } else if (request.status == 401 || request.status == 500) {
+        setLoading(false);
+        setError(true);
+      }
     } catch (error) {
-      console.log(error);
-      throw new Error("Error : " + error);
+      setError(true);
     }
   };
 
@@ -66,6 +72,7 @@ export default function LoginUser() {
         Sign in
       </button>
       {loading ? <Loading /> : ""}
+      {error ? <Error /> : ""}
     </form>
   );
 }
