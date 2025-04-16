@@ -1,13 +1,14 @@
 import { useState } from "react";
 import Loading from "./loading";
 import { useRouter } from "next/navigation";
-import Error from "./error";
+import { Error401, Error500 } from "./error";
 
 export default function LoginUser() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [error401, setError401] = useState(false);
+  const [error500, setError500] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -28,12 +29,24 @@ export default function LoginUser() {
         localStorage.setItem("id_user", data.id_user);
         router.push("/transaction");
         setLoading(false);
-      } else if (request.status == 401 || request.status == 500) {
+      } else if (request.status == 401) {
         setLoading(false);
-        setError(true);
+        setError401(true);
+        setTimeout(() => {
+          setError401(false);
+        }, 5000);
+      } else if (request.status == 500) {
+        setLoading(false);
+        setError500(true);
+        setTimeout(() => {
+          setError500(false);
+        }, 5000);
       }
     } catch (error) {
-      setError(true);
+      setError500(true);
+      setTimeout(() => {
+        setError500(false);
+      }, 5000);
     }
   };
 
@@ -75,7 +88,8 @@ export default function LoginUser() {
           Sign in
         </button>
       )}
-      {error ? <Error /> : ""}
+      {error401 ? <Error401 /> : ""}
+      {error500 ? <Error500 /> : ""}
     </form>
   );
 }
