@@ -18,17 +18,17 @@ export default function NavBar({firstName, lastName} : {firstName: string, lastN
       </div>
       <div className="w-1/4 flex justify-between items-center">
         <div className="flex items-center">
-          <div className="w-10 text-main mr-4">
-            <FontAwesomeIcon icon={faUserCircle} />
+          <div className="text-main mr-4 w-10 flex justify-center items-center">
+            <FontAwesomeIcon icon={faUserCircle} className="w-full h-full" />
           </div>
           <div>
-            <p> {firstName} </p>
-            <p> {lastName} </p>
+            <p className="text-gray-400 font-light text-lg"> {firstName} </p>
+            <p className="font-medium"> {lastName} </p>
           </div>
         </div>
         <div onClick={() => logOut()} className="hover:bg-gray-100 rounded-md p-2 cursor-pointer">
-          <div className="w-5 text-main">
-            <FontAwesomeIcon icon={faSignOut} />
+          <div className="text-main w-5">
+            <FontAwesomeIcon icon={faSignOut} className="w-full h-full" />
           </div>
         </div>
       </div>
