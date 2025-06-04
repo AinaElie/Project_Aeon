@@ -9,7 +9,7 @@ export default function RootLayout({
     <html lang="en">
       <body
       >
-        <NavBar />
+        <NavBar firstName="John" lastName="Doe" />
         {children}
       </body>
     </html>
