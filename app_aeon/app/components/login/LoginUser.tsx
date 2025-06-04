@@ -42,7 +42,7 @@ export default function LoginUser() {
           setError500(false);
         }, 5000);
       }
-    } catch (error) {
+    } catch {
       setError500(true);
       setTimeout(() => {
         setError500(false);

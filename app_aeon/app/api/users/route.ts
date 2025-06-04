@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
-export async function GET(request: NextRequest) {
+export async function GET() {
     try {
         const users = await prisma.user.findMany({
             include: {
@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
 
         return new NextResponse(JSON.stringify(users), {status: 200, headers: {"Content-Type": "application/json" }});
     } catch (error) {
-        return new NextResponse(JSON.stringify({ error: "Error server" }),
+        return new NextResponse(JSON.stringify({ error: `Error server ${error}` }),
             { status: 500 }
         )
     } 
