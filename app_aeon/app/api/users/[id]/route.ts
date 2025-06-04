@@ -3,9 +3,9 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
   request: NextRequest,
-  context: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const id = context.params.id
+  const {id} = await params;
 
   try {
     if (!id || typeof id !== "string") {
