@@ -1,7 +1,10 @@
+"use server"
+
 import { useState } from "react";
 import Loading from "./loading";
 import { useRouter } from "next/navigation";
 import { Error401, Error500 } from "./error";
+import { cookies } from "next/headers";
 
 export default function LoginUser() {
   const [email, setEmail] = useState("");
@@ -14,6 +17,7 @@ export default function LoginUser() {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     setLoading(true);
+    const cookiesStore = await cookies();
 
     try {
       const request = await fetch("/api/login/user", {
@@ -26,7 +30,7 @@ export default function LoginUser() {
 
       if (request.ok) {
         const data = await request.json();
-        localStorage.setItem("id_user", data.id_user);
+        cookiesStore.set({name: "id_user", value: data.id_user})
         router.push("/transaction");
         setLoading(false);
       } else if (request.status == 401) {
